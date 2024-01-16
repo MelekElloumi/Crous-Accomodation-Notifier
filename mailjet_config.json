@@ -1,0 +1,6 @@
+{
+  "mailjet_api_public_key": "put your public key here",
+  "mailjet_api_secret_key": "put your secret key here",
+  "email_sender": "put the mail of your mailjet account here",
+  "email_receiver": "put a different mail where you want to receive your emails"
+}

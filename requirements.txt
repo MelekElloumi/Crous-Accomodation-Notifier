@@ -1,0 +1,2 @@
+selenium
+mailjet_rest
