@@ -2,10 +2,10 @@
   "crous_map_location_url": "put here the url of the region where you want to search",
   "important_crous_list": [
     "Example1",
-    "Example2",
+    "Example2"
   ],
   "blacklisted_crous_list": [
     "Example1",
-    "Example2",
+    "Example2"
   ]
 }
