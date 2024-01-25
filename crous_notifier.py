@@ -41,26 +41,26 @@ while (True):
         wait_time=random.uniform(1,3)
         driver.implicitly_wait(1)
 
-        #Get the list of accomodations
+        #Get the list of accommodations
         h2_element = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/div/main/div[2]/div[2]/div[2]/div[1]/div/ul"))
         )
-        accomodations = h2_element.text.split('\n')
-        print(f"Found {len(accomodations) // 7} places")
+        accommodations = h2_element.text.split('\n')
+        print(f"Found {len(accommodations) // 7} places")
 
-        accomodation_found = False
+        accommodation_found = False
         important_found = False
 
         #Check if new places are found
-        for p in accomodations[1::7]:
+        for p in accommodations[1::7]:
             if p not in saved_places:
                 saved_places[p] = 1
-                accomodation_found = True
+                accommodation_found = True
 
         #Update the current places
-        saved_places = {k: v for k, v in saved_places.items() if k in accomodations}
+        saved_places = {k: v for k, v in saved_places.items() if k in accommodations}
 
-        if accomodation_found:
+        if accommodation_found:
             print("New places found")
 
             #Check if there are places that are in the important crous list
@@ -95,7 +95,7 @@ while (True):
                                     "Name": "Melek Elloumi"
                                 }
                             ],
-                            "Subject": f"Crous accomodation" if not important_found else "IMPORTANT Crous accomodation",
+                            "Subject": f"Crous accommodation" if not important_found else "IMPORTANT Crous accommodation",
                             "TextPart":
                                 h2_element.text + f"\n{crous_config['crous_map_location_url']}",
 
