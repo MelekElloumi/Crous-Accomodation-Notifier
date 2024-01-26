@@ -19,7 +19,7 @@ Actually they do show up but they just get taken fast before you can see them.
    
 3. Install the requirements
    ```sh
-   pip install requirements.txt
+   pip install -r requirements.txt
    ```
 
 ### Crous configuration steps
@@ -51,6 +51,8 @@ Run this command:
    ```
 
 - Now let it run and keep your phone next to you so you don't miss the emails notifications.
+
+- The script will refresh the page every 1-3 minutes.
 
 - Make sure you're ready for reservation by scanning your documents (ID, university inscription, internship convention, Visale...)
 
