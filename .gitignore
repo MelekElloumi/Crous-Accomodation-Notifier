@@ -1,1 +1,17 @@
 .idea
+
+# Real configs hold secrets / personal values — keep them local.
+# The *.example.json templates are committed instead.
+crous_config.json
+mailjet_config.json
+
+# Python / virtualenv
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# PyInstaller build output
+build/
+dist/
+*.spec
