@@ -5,7 +5,17 @@
 - You want to find cheap accessible accomodation in the public dorm "Crous" but nothing shows up where you want? 
 Actually they do show up but they just get taken fast before you can see them.
 
-- Instead of manually checking the site, here's a script that will notify you by email whenever a new accommodation appears. Just follow these steps:
+- Instead of manually checking the site, here's a tool that will notify you by email whenever a new accommodation appears.
+
+## Two ways to use it
+
+**Option A — Download the ready-made app (recommended, no setup).** No Python, no command line. Download the latest `CrousNotifier-windows.zip` from the [Releases page](https://github.com/MelekElloumi/Crous-Accomodation-Notifier/releases), extract it, and double-click `CrousNotifier.exe`. A window lets you fill in every setting and start/stop the watcher with a button. You still need **Google Chrome** installed and a free **Mailjet** account (see the sections below). Step-by-step instructions ship in the `README.txt` inside the zip.
+
+**Option B — Run from source (for developers).** Follow the steps below.
+
+> The configuration explained in the sections below (CROUS URL, Mailjet keys, important/blacklisted lists) is the same for both options. With the app you enter it in the window; from source you edit the JSON files.
+
+## Option B — Run from source
 
 ### Environment setup
 
@@ -15,7 +25,7 @@ Actually they do show up but they just get taken fast before you can see them.
 
 3. Clone the repo
    ```sh
-   git clone https://github.com/MelekElloumi/Crous-Accomodation-notifier.git
+   git clone https://github.com/MelekElloumi/Crous-Accomodation-Notifier.git
    ```
    
 4. Install the requirements
@@ -47,7 +57,7 @@ The script sends notifications through [Mailjet](https://www.mailjet.com/), a fr
    - **`mailjet_api_secret_key`**: your Mailjet secret key.
    - **`email_sender`**: the email address you used to create the Mailjet account. Emails must be sent *from* this address.
    - **`email_receiver`**: the address where you want to receive notifications. Use a **different** address than the sender — if you send to yourself it gets flagged as spam and you'll miss the alert.
-   - **`email_receiver2`** *(optional)*: a second recipient. It's only used if you uncomment the second recipient block in `crous_notifier.py`; otherwise you can leave it as is or remove it.
+   - **`email_receiver2`** *(optional)*: a second recipient. If you set it to a valid email it also receives the alerts; leave it empty (`""`) to disable.
 
 > ⚠️ Keep `mailjet_config.json` private — it holds your secret key. Don't commit your real keys to a public repository.
 
@@ -76,5 +86,20 @@ Run this command:
 
 - Usually new accommodations appear around Monday and Friday at 10 AM so try to let the script running before that. 
 
+## Building the Windows app (maintainers)
+
+The desktop app is built automatically by GitHub Actions (`.github/workflows/build.yml`) on a Windows runner, which bundles Python and Selenium into a single `CrousNotifier.exe` (only Chrome is needed on the user's machine).
+
+- **Test build:** go to the repo's **Actions** tab → **Build Windows package** → **Run workflow**. When it finishes, download the `CrousNotifier-windows` artifact and try it.
+- **Publish a release:** push a version tag and the same workflow attaches the zip to a GitHub Release:
+  ```sh
+  git tag v1.0.0
+  git push origin v1.0.0
+  ```
+- **Build locally (optional):**
+  ```sh
+  pip install pyinstaller
+  pyinstaller --noconfirm --onefile --windowed --name CrousNotifier --collect-all selenium gui.py
+  ```
 
 ## Happy hunting :D
